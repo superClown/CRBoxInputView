@@ -231,6 +231,8 @@
 {
     _boxInputCellProperty = boxInputCellProperty;
     
+    [self prepareCellProperty];
+    
     _cursorView.backgroundColor = boxInputCellProperty.cellCursorColor;
     [_cursorView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(boxInputCellProperty.cellCursorWidth);
@@ -258,8 +260,7 @@
     return _customSecurityView;
 }
 
-- (void)layoutSubviews
-{
+- (void)prepareCellProperty {
     __weak typeof(self) weakSelf = self;
     
     if (_boxInputCellProperty.showLine && !_lineView) {
@@ -274,6 +275,24 @@
     if (_boxInputCellProperty.configCellShadowBlock) {
         _boxInputCellProperty.configCellShadowBlock(weakSelf.layer);
     }
+}
+
+- (void)layoutSubviews
+{
+//    __weak typeof(self) weakSelf = self;
+//    
+//    if (_boxInputCellProperty.showLine && !_lineView) {
+//        NSAssert(_boxInputCellProperty.customLineViewBlock, @"customLineViewBlock can not be null！");
+//        _lineView = _boxInputCellProperty.customLineViewBlock();
+//        [self.contentView addSubview:_lineView];
+//        [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.bottom.top.offset(0);
+//        }];
+//    }
+//    
+//    if (_boxInputCellProperty.configCellShadowBlock) {
+//        _boxInputCellProperty.configCellShadowBlock(weakSelf.layer);
+//    }
     
     [super layoutSubviews];
 }

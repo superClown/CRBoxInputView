@@ -31,7 +31,7 @@
 
 - (void)createUI
 {
-    static CGFloat sepLineViewHeight = 4;
+    static CGFloat sepLineViewHeight = 1;
     
     _lineView = [UIView new];
     [self addSubview:_lineView];
